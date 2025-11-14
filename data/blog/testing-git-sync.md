@@ -1,0 +1,14 @@
+---
+title: Testando workflow (Git/Obsidian)
+date: '2025-11-14'
+tags: ['markdown' ]
+draft: false
+summary: Testando a integração do Git com o Obsidian para envio de novos posts
+---
+## Sincronização
+
+Pensando numa forma mais "legível" de escrever meus posts, formulei a seguinte estratégia:
+
+Escrevo no **Obsidian** -> sincronizo com o **Git** -> mando pro repo e faço o **CI/CD** pra automatizar o processo de build.
+
+E ai? Será que funcionará?
