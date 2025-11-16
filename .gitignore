@@ -8,6 +8,7 @@
 !/.yarn/releases
 !/.yarn/plugins
 !/.yarn/sdks
+/data/blog/.obsidian/
 
 # testing
 /coverage

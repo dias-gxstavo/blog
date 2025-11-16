@@ -140,3 +140,7 @@
 .token.table {
   display: inline;
 }
+
+.h-8 .w-full {
+  border-color: oklch(62.793% 0.25768 29.223);
+}
