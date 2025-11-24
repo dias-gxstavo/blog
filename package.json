@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "dev": "yarn run dev",
+    "dev": "cross-env INIT_CWD=$PWD next dev",
     "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules'",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
   },
