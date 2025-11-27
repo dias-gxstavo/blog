@@ -11,6 +11,12 @@
   font-style: normal;  
 }
 
+p{
+   font-family:var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-weight:600; 
+}
+
 /* Core theme configuration */
 @theme {
   /* Font families */
