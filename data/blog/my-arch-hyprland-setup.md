@@ -1,0 +1,41 @@
+---
+title: Meu setup Arch Linux + Hyprland
+date: '2025-11-29'
+tags: ['linux' ]
+draft: false
+summary: Explicando um pouco sobre minha configuração do Arch Linux
+---
+## Introdução
+
+Pois bem, recentemente eu tive a imensa curiosidade de desbravar o ambiente Arch + Hyprland. Isso se deu, principalmente, após eu ver um vídeo no youtube que mostrava o **[rice]**(https://www.youtube.com/watch?v=NrRVr-kysko&pp=ygUTYXJjaCBsaW51eCBoeXBybGFuZNIHCQkVCgGHKiGM7w%3D%3D) do workspace de um camarada
+
+Apesar de ser Mint User há um bom tempo, sentia vontade de baixar o Arch pelo alvoroço que fazem a respeito dele. Percebi que nos fóruns como os do Reddit haviam dois tipos de pessoas: As que dizem que o Arch é "muuuito" difícil e que é coisa de **"Linux hipster"** e as que adoravam a liberdade de poder personalizar seu workspace dos pés a cabeça.
+
+## Mom, my arch linux broke again
+
+Houveram 2 tentativas frustadas de configurar o Arch Linux. As duas primeiras ocorreram por que meu HD e SSD (ambos velhos de guerra), que já tinham um certo tempo de operação, decidiram corromper. 
+
+Curiosamente, esses eventos ocorreram após eu realizar toda a configuração primordial pra navegar minimamente no Hyprland. Por duas vezes dormi com um workspace configurado e acordei na tela de boot do Arch.
+(Comprei um novo SSD e lá vamos nós setar tudo novamente) 
+
+O último caso de **quase** corrompimento foi após eu editar o arquivo mkinitcpio.conf SEM perceber. Como eu fiz isso? Nunca saberei
+
+Também teve um pouco de ingenuidade da minha parte neste último, quando tentei atualizar os pacotes do sistema (`sudo pacman -Syu`) após essa edição misteriosa, já havia uma mensagem bem clara indicando que tinha algo fora do comum acontecendo, mas eu decidi ignorar
+
+Por fim, tive que inserir o boot usb pra editar o arquivo nano via arch-chroot, e felizmente dessa vez deu tudo certo. Seguimos!
+
+## Meu Setup
+
+[Minhas configurações](https://github.com/dias-gxstavo/dotfiles) são uma compilação de funcionalidades inspiradas em outras. Entretanto, muita coisa eu adequei pra ficar do meu gosto.
+#### Workspace Navigation
+> A navegação no workspace ficou bem divertida. Integrei esse ícone dos fantasmas do pacman com uma cor pra cada espaço. Aliás, esse ícone foi tirado do [NerdFont](https://www.nerdfonts.com/)
+>
+> Além disso, o módulo do Spotify foi feito através de um script em Python. 
+> Com um scroll up, a música é avançada, com um scroll down a música volta e com um clique pausa ou inicia. Bem maneiro!
+![home](https://htbkooimxfbzatzfvfyt.supabase.co/storage/v1/object/public/blog'images/waybar.png)
+#### Desktop
+![home](https://htbkooimxfbzatzfvfyt.supabase.co/storage/v1/object/public/blog'images/desktop.png)
+#### Neofetch
+![ghostneofetchworkspace](https://htbkooimxfbzatzfvfyt.supabase.co/storage/v1/object/public/blog'images/ghostneofetchworkspace.png)
+#### Spotify
+![spotify](https://htbkooimxfbzatzfvfyt.supabase.co/storage/v1/object/public/blog'images/spotifyworkspace.png)
