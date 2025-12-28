@@ -73,7 +73,7 @@ module.exports = () => {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'picsum.photos',
+          hostname: 'nextcloud.gudilab.online',
         },
       ],
       unoptimized,

@@ -1,6 +1,9 @@
 [build]
-  command = "yarn contentlayer build && yarn next build"
+  command = "yarn install && contentlayer2 build && next build"
   publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22.21.1"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
