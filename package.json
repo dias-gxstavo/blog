@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "dev": "next dev",
-    "build": "next build"
+    "dev": "contentlayer2 dev & next dev",
+    "build": "contentlayer2 build && next build",
+    "postinstall": "contentlayer2 build"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
