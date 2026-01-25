@@ -1,43 +1,33 @@
 ---
-title: Homelab com CasaOS e Raspberry Pi
+title: Homelab com Raspberry PI utilizando Docker e Homarr
 date: 2025-12-28
 tags:
   - raspberry
   - linux
   - homelab
 draft: false
-summary: Explicando sobre meu servidor caseiro com CasaOS no Raspberry Pi
+summary: Meu servidor caseiro utilizando ferramentas de dashboard e isolabilidade
 ---
-Recentemente pude tirar um tempo para configurar meu servidor caseiro com calma e escolhi utilizar o [CasaOS](https://casaos.zimaspace.com/) para isso. O CasaOS é um software **open-source** que oferece uma interface gráfica bem intuitiva para realizarmos as configurações do nosso servidor pessoal, o que reduz a necessidade do uso massivo de **CLI**.
 
-![casaos](https://nextcloud.gudilab.online/s/GxfkMye7353imkw/download)
+## Introdução
+Recentemente pude tirar um tempo para configurar meu servidor caseiro com calma e escolhi utilizar o [Homarr](https://homarr.dev/) para isso. 
+O Homarr é um software **open-source** que oferece uma interface gráfica no estilo de dashboard para controlarmos o nosso servidor, o que reduz a necessidade do uso massivo de **CLI/YAML**.
+
+![homarr](https://minio.gudilab.online/my-other-bucket/homarr-env/2026-01-25-114656_hyprshot.png)
 
 ## Aplicações via Docker
 
-Uma das maiores vantagens do CasaOS é que esse software é totalmente voltado ao ecossistema do Docker. Ao acessar a AppStore, podemos baixar milhares de serviços, também chamados de **Apps**, que nada mais são que imagens das suas respectivas aplicações. 
+Uma das maiores vantagens do Homarr é que esse software é totalmente voltado ao ecossistema Docker. Podemos baixar milhares de serviços, também chamados de **Apps**, que nada mais são que imagens das suas respectivas aplicações. 
 
-![appstore](https://nextcloud.gudilab.online/s/ssNxQak8KdTLFTt/download)
+![appstore](https://minio.gudilab.online/my-other-bucket/homarr-env/2026-01-25-111001_hyprshot.png)
 
-## Nextcloud
+## Encontrando serviços de self-hosting
 
-O NextCloud foi um achado para mim no CasaOS. Com ele, pude criar um backup de fotos pessoais disponível para todos aqui em casa, pois conta com aplicativo em Android e IOS e tem uma **UI** bem amigável também.
+O Self-hosting é a pratica de hospedar e gerenciar aplicativos no seu próprio aplicativo invés de consumir serviços de terceiros
 
-Além disso, uso o Nextcloud como Storage para as fotos que utilizo aqui no blog. 😀
+Para isso, utilizo o [linuxserver.io](https://www.linuxserver.io/our-images) e o [Awesome-Selfhosted](https://awesome-selfhosted.net/index.html).
+Estes dois são grandes repositórios com diversos serviços, além de serem **open-source**.
 
-![nextcloud](https://nextcloud.gudilab.online/s/XdBq2BAJzMDJAFc/download)
+![awesomeselfhosted](https://minio.gudilab.online/my-other-bucket/homarr-env/2026-01-25-125736_hyprshot.png)
 
-## Utilizando o Nextcloud como Storage
 
-Anteriormente, eu utilizava o Supabase Storage como solução para enviar imagens sem ter que baixá-las, porém eu cai na armadilha dos serviços "pseudogratuitos". Após um tempo, seu bucket sofre pausas constantes até que você faça o upgrade do seu plano.  Consequentemente, seus arquivos estáticos param de carregar.
-
-Sabendo disso eu parti pra seguinte solução:
-
-Para permitir meu serviço de nuvem pessoal se tornar um storage como o S3, precisei de um domínio publico e de um **Tunnel** da [Cloudflare](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/get-started/). Seguindo a documentação da Cloudflare fica bem fácil de criar.
-
-Depois de adquirir um domínio e criar um tunnel, bastava vincular o token do console da Cloudflare com o app **Cloudflared** do CasaOS e realizar o **port forwading** dos serviços através do tunelamento. Estamos quase lá! 
-
-Para finalizar, foi necessário editar o array de `trusted_domains` no arquivo **config.php** do Nextcloud adicionando o endereço público que foi configurado anteriormente. Dessa forma, consigo disponibilizar a URL das imagens que armazeno nas minhas pastas.
-**DOCS:** [HowTo: Add a new trusted domain](https://help.nextcloud.com/t/howto-add-a-new-trusted-domain/26)
-
-Pronto! Basta passar o path **'/download'** no final da URL para termos as imagens.
-A URL das imagens fica assim: `https://seudominio.publico/s/{id}/download`

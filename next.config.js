@@ -73,7 +73,7 @@ module.exports = () => {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'nextcloud.gudilab.online',
+          hostname: 'minio.gudilab.online',
         },
       ],
       unoptimized,
