@@ -57,7 +57,6 @@ services:
     Este arquivo abaixo configura o Prometheus para coletar métricas do cAdvisor. Lembre-se de alterar o IP para o endereço do host onde o cAdvisor está rodando, se necessário.
 
 ```
-config.yaml 
 global:
   scrape_interval:     15s
 scrape_configs:
@@ -91,7 +90,7 @@ docker-compose up -d
 - Prometheus: [http://localhost:9090](http://localhost:9090)
 - Grafana: [http://localhost:9100](http://localhost:9100)
 
-# Criando Dashboard com Template do Grafana
+## Criando Dashboard com Template do Grafana
 Para criar um dashboard no Grafana que monitore os containers Docker, você pode baixar o arquivo json de um template ou importá-lo no Grafana com seu ID.
 
 No caso do dashboard da imagem abaixo, o ID é `193`, e pode ser importado diretamente no Grafana. Basta acessar a aplicação local em http://localhost:9100/dashboard/import
