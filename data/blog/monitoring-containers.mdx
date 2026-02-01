@@ -1,0 +1,101 @@
+---
+title: Monitorando Containers com cAdvisor, Prometheus e Grafana
+date: '2026-01-31'
+tags: ['docker, observabilidade']
+draft: false
+summary: Configurando ambiente de monitoramento para containers Docker usando cAdvisor, Prometheus e Grafana.
+---
+
+## Contextualizando as ferramentas
+
+- **cAdvisor**: Ferramenta que coleta, processa e exporta métricas sobre o desempenho dos containers em execução. 
+Ele fornece logs detalhadps sobre o uso de CPU, memória, rede e disco dos containers Docker.
+
+- **Prometheus**: Sistema de monitoramento e alerta que coleta e armazena métricas em uma base de dados de séries temporais
+
+- **Grafana**: Plataforma de análise e visualização que permite criar dashboards interativos para visualizar métricas coletadas por ferramentas como Prometheus.
+
+## Configurando o ambiente
+Para configurar o ambiente de monitoramento, siga os passos abaixo:
+
+1. Crie um arquivo `docker-compose.yml` com o seguinte conteúdo:
+```
+version: '3'
+
+services:
+  cadvisor:
+      image: gcr.io/cadvisor/cadvisor:v0.47.1
+      hostname: cadvisor
+      platform: linux/aarch64
+      volumes:
+        - "/:/rootfs:ro"
+        - "/var/run:/var/run:ro"
+        - "/sys:/sys:ro"
+        - "/var/lib/docker/:/var/lib/docker:ro"
+        - "/dev/disk/:/dev/disk:ro"
+      ports:
+        - "8080:8080"
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus-config.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - ./grafana-config.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+    ports:
+      - "9100:3000"
+
+```
+
+2. Crie um arquivo `prometheus-config.yml` com o seguinte conteúdo:
+
+    Este arquivo abaixo configura o Prometheus para coletar métricas do cAdvisor. Lembre-se de alterar o IP para o endereço do host onde o cAdvisor está rodando, se necessário.
+
+```
+config.yaml 
+global:
+  scrape_interval:     15s
+scrape_configs:
+  - job_name: 'cadvisor'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["127.0.0.1:8080"] # ip
+```
+
+3. Crie um arquivo `grafana-config.yml` com o seguinte conteúdo:
+    
+    Este arquivo configura o Grafana para usar o Prometheus como fonte de dados. Lembre-se de alterar o IP para o endereço do host onde o Prometheus está rodando, se necessário.
+```
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://127.0.0.1:9090 ## ip
+    isDefault: true
+```
+
+4. Inicie os serviços com o comando abaixo e confira a UI das respectivas aplicações para verificar se estão rodando corretamente:
+```bash
+docker-compose up -d
+```
+
+## Acessando as interfaces web
+- cAdvisor: [http://localhost:8080](http://localhost:8080)
+- Prometheus: [http://localhost:9090](http://localhost:9090)
+- Grafana: [http://localhost:9100](http://localhost:9100)
+
+# Criando Dashboard com Template do Grafana
+Para criar um dashboard no Grafana que monitore os containers Docker, você pode baixar o arquivo json de um template ou importá-lo no Grafana com seu ID.
+
+No caso do dashboard da imagem abaixo, o ID é `193`, e pode ser importado diretamente no Grafana. Basta acessar a aplicação local em http://localhost:9100/dashboard/import
+
+Confira o dashboard em: https://grafana.com/grafana/dashboards/193-docker-monitoring/ 
+![dashboard](https://minio.gudilab.online/my-other-bucket/monitoring.png)
+
