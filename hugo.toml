@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://huguenin.blog"
 languageCode = "en-us"
 title = "gustavo.huguenin"
 theme = "dario"
