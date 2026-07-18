@@ -1,0 +1,16 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "gustavo.huguenin"
+theme = "dario"
+
+[params]
+
+  author = "Gustavo Huguenin"
+  colorScheme = 'system'
+  description = "mental ramblings from Gustavo Huguenin."
+  mainSections = ['posts', 'notes']
+
+  [params.homeInfoParams]
+    Title = "Gustavo Huguenin"
+    Content = "mental ramblings from Gustavo Huguenin."
+    Description = "mental ramblings from Gustavo Huguenin."
