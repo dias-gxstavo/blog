@@ -1,7 +1,7 @@
 ---
 showDate: false
 comments: false
-norss: true
+norss: false
 ---
 
 Hi, I'm Gustavo Huguenin, and this is my personal website. 
